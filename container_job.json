@@ -1,0 +1,14 @@
+{
+  "schedule": "R5/2016-06-02T15:00:00.000Z/PT10S",
+  "name": "docker_sleeping", 
+  "container": { 
+      "type": "DOCKER",
+      "image": "ubuntu"
+  },
+  "cpus": "0.5", 
+  "mem": "256",
+  "command": "date; sleep 120; date",
+  "owner": "iblanque@dsic.upv.es",
+  "async": "false"
+}
+

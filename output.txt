@@ -1,0 +1,89 @@
+Tests for the EUBRA-BIGSEA environment
+Set the MESOSCLUSTER Variable to the appropriate endpoint
+set HDFSHOMEDIR to your HDFS home directory before starting
+############ Chronos tests #############
+##### Simple job, job embedded in the command argument
+# Submission of the framework
+# Run job
+##### Simple container job, job embedded in the command argument and no volumes
+# Submission of the framework
+# Run job
+##### Container-specific job, containers mounts a volume from the shared directory where data and executable files are found
+# Submission of the framework
+HTTP/1.1 204 No Content
+Content-Type: application/json
+Server: Jetty(8.y.z-SNAPSHOT)
+
+# Run job
+############ Marathon tests #############
+##### Simple job, no containers
+# Submission and execution of the framework
+HTTP/1.1 201 Created
+Date: Thu, 04 Aug 2016 11:17:39 GMT
+X-Marathon-Leader: http://mesosserverpublic.localdomain:8080
+Cache-Control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: 0
+Location: http://158.42.104.229:8080/v2/apps/mysimpleapp
+Content-Type: application/json; qs=2
+Transfer-Encoding: chunked
+Server: Jetty(9.3.z-SNAPSHOT)
+
+{"id":"/mysimpleapp","cmd":"for i in `seq 1 10`; do echo \\\"sleeping $i\\\" ; sleep 2; done","args":null,"user":null,"env":{},"instances":1,"cpus":1,"mem":128,"disk":0,"executor":"","constraints":[],"uris":[],"fetch":[],"storeUrls":[],"ports":[10002],"portDefinitions":[{"port":10002,"protocol":"tcp","labels":{}}],"requirePorts":false,"backoffSeconds":1,"backoffFactor":1.15,"maxLaunchDelaySeconds":3600,"container":null,"healthChecks":[],"readinessChecks":[],"dependencies":[],"upgradeStrategy":{"minimumHealthCapacity":1,"maximumOverCapacity":1},"labels":{},"acceptedResourceRoles":null,"ipAddress":null,"version":"2016-08-04T11:17:39.245Z","residency":null,"tasksStaged":0,"tasksRunning":0,"tasksHealthy":0,"tasksUnhealthy":0,"deployments":[{"id":"c501b311-c5d8-49b1-9ea9-7ce4c075a3dc"}],"tasks":[]}##### Simple job, with containers
+# Submission and execution of the framework
+HTTP/1.1 100 Continue
+
+HTTP/1.1 201 Created
+Date: Thu, 04 Aug 2016 11:17:44 GMT
+X-Marathon-Leader: http://mesosserverpublic.localdomain:8080
+Cache-Control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: 0
+Location: http://158.42.104.229:8080/v2/apps/mysimpledockapp2
+Content-Type: application/json; qs=2
+Transfer-Encoding: chunked
+Server: Jetty(9.3.z-SNAPSHOT)
+
+{"id":"/mysimpledockapp2","cmd":"for i in `seq 1 10`; do echo \\\"sleeping $i\\\" ; sleep 2; done","args":null,"user":null,"env":{},"instances":1,"cpus":1,"mem":128,"disk":0,"executor":"","constraints":[],"uris":[],"fetch":[],"storeUrls":[],"ports":[10003],"portDefinitions":[{"port":10003,"protocol":"tcp","labels":{}}],"requirePorts":false,"backoffSeconds":1,"backoffFactor":1.15,"maxLaunchDelaySeconds":3600,"container":null,"healthChecks":[],"readinessChecks":[],"dependencies":[],"upgradeStrategy":{"minimumHealthCapacity":1,"maximumOverCapacity":1},"labels":{},"acceptedResourceRoles":null,"ipAddress":null,"version":"2016-08-04T11:17:44.317Z","residency":null,"tasksStaged":0,"tasksRunning":0,"tasksHealthy":0,"tasksUnhealthy":0,"deployments":[{"id":"f573af85-5b2f-4ed1-b128-987962b22e40"}],"tasks":[]}############ HDFS and MapReduce tests #############
+##### Copy WordCount data and program, compile and run it
+added manifest
+adding: org/(in = 0) (out= 0)(stored 0%)
+adding: org/apache/(in = 0) (out= 0)(stored 0%)
+adding: org/apache/hadoop/(in = 0) (out= 0)(stored 0%)
+adding: org/apache/hadoop/examples/(in = 0) (out= 0)(stored 0%)
+adding: org/apache/hadoop/examples/WordCount$MapClass.class(in = 2079) (out= 863)(deflated 58%)
+adding: org/apache/hadoop/examples/WordCount.class(in = 3365) (out= 1692)(deflated 49%)
+adding: org/apache/hadoop/examples/WordCount$Reduce.class(in = 1654) (out= 661)(deflated 60%)
+############ Spark job via spark-submit, with no interaction with HDFS
+##### Compute an approximation of Pi in python
+Pi is roughly 3.143560
+############ Spark job via spark-submit, with interaction with HDFS
+##### Compute wordcount with Spark
+(u'', 3)
+(u'el', 4)
+(u'es', 3)
+############ Spark execution via spark-shell, without interaction with HDFS
+##### Compute an approximation of Pi in python
+Welcome to
+      ____              __
+     / __/__  ___ _____/ /__
+    _\ \/ _ \/ _ `/ __/  '_/
+   /___/ .__/\_,_/_/ /_/\_\   version 1.6.1
+      /_/
+
+Using Scala version 2.10.5 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_101)
+Type in expressions to have them evaluated.
+Type :help for more information.
+Spark context available as sc.
+SQL context available as sqlContext.
+
+scala> 
+
+scala> val NUM_SAMPLES=100000
+NUM_SAMPLES: Int = 100000
+
+scala> val count = sc.parallelize(1 to NUM_SAMPLES).map{i =>
+     |   val x = Math.random()
+     |   val y = Math.random()
+     |   if (x*x + y*y < 1) 1 else 0
+     | }.reduce(_ + _)

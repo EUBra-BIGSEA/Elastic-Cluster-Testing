@@ -1,0 +1,4 @@
+
+este texto es el primer texto 
+que es importante para el ejercicio 
+en el que es el objetivo contar palabras
