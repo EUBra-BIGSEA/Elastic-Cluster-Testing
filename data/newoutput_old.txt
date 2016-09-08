@@ -1,0 +1,51 @@
+Rolled Double Precision Linpack (1000)
+
+Wed Sep  7 11:19:53 2016
+
+    times are reported for matrices of order   500
+      dgefa      dgesl      total       kflops     unit      ratio
+ times for array with leading dimension of 1001
+       0.18       0.00       0.19     450887       0.00       3.32
+       0.15       0.00       0.15     540993       0.00       2.77
+       0.14       0.00       0.14     598788       0.00       2.50
+       0.14       0.00       0.14     594136       0.00       2.52
+ times for array with leading dimension of1000
+       0.13       0.00       0.13     639276       0.00       2.34
+       0.12       0.00       0.12     679142       0.00       2.20
+       0.12       0.00       0.12     681156       0.00       2.20
+       0.14       0.00       0.14     604124       0.00       2.48
+Rolled Double  Precision 594136 Kflops ; 1000 Reps 
+Rolled Double Precision Linpack (1000)
+
+Wed Sep  7 11:26:14 2016
+
+    times are reported for matrices of order   500
+      dgefa      dgesl      total       kflops     unit      ratio
+ times for array with leading dimension of 1001
+       0.18       0.00       0.19     451013       0.00       3.32
+       0.17       0.00       0.17     490308       0.00       3.05
+       0.15       0.00       0.15     542530       0.00       2.76
+       0.14       0.00       0.14     581575       0.00       2.57
+ times for array with leading dimension of1000
+       0.18       0.00       0.18     464858       0.00       3.22
+       0.12       0.00       0.12     678219       0.00       2.21
+       0.12       0.00       0.12     676763       0.00       2.21
+       0.14       0.00       0.15     576805       0.00       2.60
+Rolled Double  Precision 576805 Kflops ; 1000 Reps 
+Rolled Double Precision Linpack (1000)
+
+Wed Sep  7 11:34:14 2016
+
+    times are reported for matrices of order   500
+      dgefa      dgesl      total       kflops     unit      ratio
+ times for array with leading dimension of 1001
+       0.19       0.00       0.19     448578       0.00       3.34
+       0.18       0.00       0.18     470416       0.00       3.18
+       0.14       0.00       0.14     586834       0.00       2.55
+       0.15       0.00       0.15     573933       0.00       2.61
+ times for array with leading dimension of1000
+       0.17       0.00       0.17     494717       0.00       3.03
+       0.12       0.00       0.12     672269       0.00       2.23
+       0.12       0.00       0.12     677907       0.00       2.21
+       0.15       0.00       0.15     574429       0.00       2.61
+Rolled Double  Precision 573933 Kflops ; 1000 Reps 

@@ -1,0 +1,20 @@
+{
+  "schedule": "R5//PT4M",
+  "name": "linpack_test", 
+  "container": { 
+      "type": "DOCKER",
+      "image": "eubrabigsea/r-client",
+      "forcePullImage": true,
+      "volumes": [
+      {
+        "containerPath": "/data/",
+        "hostPath": "/home/ubuntu/testing/data",
+        "mode": "RW"
+      } ]
+  },
+  "cpus": "1", 
+  "mem": "512",
+  "command": "/linpack /data/newoutput.txt 1000",
+  "owner": "iblanque@dsic.upv.es",
+  "async": "false"
+}

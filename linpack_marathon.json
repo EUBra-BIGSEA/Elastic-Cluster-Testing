@@ -1,6 +1,6 @@
 {
-  "id":"/mysimpledockapp2",
-  "cmd":"for i in `seq 1 10`; do echo \\\"sleeping $i\\\" ; sleep 2; done",
+  "id":"/linpackmartest",
+  "cmd":"for i in `seq 1 10`; do echo \\\"step $i\\\" ; time /linpack /data/marathon_out.txt 1000; sleep 60 ; done",
   "args":null,
   "user":null,
   "env":{},
@@ -12,8 +12,16 @@
     "type": "DOCKER",
     "docker": {
       "network": "HOST",
-      "image": "ubuntu"
-    }
+      "image": "eubrabigsea/r-client",
+      "forcePullImage": true
+    },
+    "volumes": [
+      {
+        "containerPath": "/data/",
+        "hostPath": "/home/ubuntu/testing/data",
+        "mode": "RW"
+      }
+    ]
   },
   "executor":"",
   "constraints":[],
