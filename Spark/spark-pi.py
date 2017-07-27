@@ -8,7 +8,7 @@ if len(sys.argv)<2 :
 else:
     NUM_SAMPLES=int(sys.argv[1])
 
-conf = SparkConf().setMaster("local").setAppName("My App")
+conf = SparkConf().setAppName("My PI Spark app")
 sc = SparkContext(conf = conf)
 def sample(p):
     x, y = random.random(), random.random()

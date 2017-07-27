@@ -5,8 +5,8 @@ if [ "$#" -ne 1 ]; then
   exit 1;
 fi
 
-MESOSMASTER=158.42.104.229
-curl -i -L -H 'Content-Type: application/json' -X POST -d@"$@" $MESOSMASTER:4400/scheduler/iso8601
+source vars.sh
+curl -u $CHRPRINCIPAL:$CHRSECRET -i -L -H 'Content-Type: application/json' -X POST -d@"$@" $MESOSMASTER:$CHRONOSPORT/scheduler/iso8601
 
 
 
