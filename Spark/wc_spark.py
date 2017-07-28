@@ -1,7 +1,7 @@
 from pyspark import SparkConf, SparkContext
 import sys
 
-conf = SparkConf().setMaster("local").setAppName("My App")
+conf = SparkConf().setAppName("My App")
 sc = SparkContext(conf = conf)
 
 if len(sys.argv)<2 :
